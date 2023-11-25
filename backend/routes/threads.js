@@ -1,46 +1,27 @@
 const express = require('express')
-const threadModel = require('../models/threadModel')
+const {
+    createThread,
+    getThread,
+    getThreads,
+    deleteThread,
+    updateThread
+} = require('../controllers/threadController')
 
 const router = express.Router()
 
 //GET all threads
-router.get('/', (req, res)=>
-{
-    res.json({mssg: 'GET all threads'})
-})
+router.get('/', getThreads)
 
 //GET single thread
-router.get('/:id', (req, res)=>
-{
-    res.json({mssg: 'GET single thread'})
-})
+router.get('/:id', getThread)
 
 //POST a new thread
-router.post('/', async (req, res) => 
-{
-    const {title, line, code} = req.body
-    try 
-        {
-            const thread = await threadModel.create({title, line, code})
-            res.status(200).json(thread)
-        }
-    catch(error)
-        {
-            res.status(400).json({error: error.message})
-        }
-    res.json({mssg: 'POST new thread'})
-})
+router.post('/', createThread)
 
 //DELETE a thread
-router.delete('/:id', (req, res)=>
-{
-    res.json({mssg: 'DELETE a thread'})
-})
+router.delete('/:id', deleteThread)
 
 //UPDATE a thread
-router.patch('/:id', (req, res)=>
-{
-    res.json({mssg: 'UPDATE a thread'})
-})
+router.patch('/:id', updateThread)
 
 module.exports = router
