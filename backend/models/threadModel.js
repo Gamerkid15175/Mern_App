@@ -11,8 +11,12 @@ const threadSchema = new Schema({
         type: Number,
         required:true
         },
-    date: {
+    code: {
         type: Number,
         required:true
         }
+},{
+    timestamps:true
 })
+
+module.exports = mongoose.model('thread', threadSchema)
