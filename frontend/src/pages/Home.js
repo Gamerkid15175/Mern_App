@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useThreadsContext } from '../hooks/useThreadsContext'
 
 //Components
 import ThreadDetails from '../components/ThreadDetails'
@@ -6,7 +7,7 @@ import ThreadForm from "../components/ThreadForm"
 
 const Home = ()=>
 {
-    const [threads, setThreads] = useState(null)
+    const {threads, dispatch} = useThreadsContext()
 
     useEffect(()=>
     {
@@ -17,11 +18,11 @@ const Home = ()=>
 
             if(response.ok)
             {
-                setThreads(json)
+                dispatch({type: 'SET_THREADS', payload: json})
             }
         }
         fetchThreads()
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="home">

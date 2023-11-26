@@ -1,7 +1,9 @@
 import { useState } from "react"
+import { useThreadsContext } from '../hooks/useThreadsContext'
 
 const ThreadForm = () => 
 { 
+    const {dispatch} = useThreadsContext()
     const [title,setTitle] = useState('')
     const [line,setLine] = useState('')
     const [code,setCode] = useState('')
@@ -27,6 +29,7 @@ const ThreadForm = () =>
             setCode('')
             setError(null)
             console.log('new thread added', json)
+            dispatch({type: 'CREATE_THREAD', payload: json})
         }
 
     }
