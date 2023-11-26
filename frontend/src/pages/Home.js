@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 //Components
 import ThreadDetails from '../components/ThreadDetails'
+import ThreadForm from "../components/ThreadForm"
 
 const Home = ()=>
 {
@@ -28,9 +29,9 @@ const Home = ()=>
                 {threads && threads.map((thread)=>
                 (
                     <ThreadDetails key={thread._id} thread={thread}/>
-
                 ))}
             </div>
+            <ThreadForm />
         </div>
     )
 }

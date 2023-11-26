@@ -19,7 +19,7 @@ const getThread = async (req,res) =>
     }
     const thread = await threadModel.findById(id)
 
-    if(!thread)
+    if(!thread) 
     {
         return res.status(404).json({error: 'No such thread'})
     }
@@ -32,7 +32,7 @@ const createThread = async (req, res) =>
 {
     const {title, line, code} = req.body
 
-    //add doc to db
+    //add to database
     try 
         {
             const thread = await threadModel.create({title, line, code})
@@ -78,7 +78,7 @@ const updateThread = async (req,res)=>
     })
     if(!thread)
     {
-        return res.status(404).json({error: 'No such thread'})
+        return res.status(404).json({error: 'No such thread'});
     }
 
     res.status(200).json(thread)
