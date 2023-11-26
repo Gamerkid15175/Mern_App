@@ -1,4 +1,5 @@
 import { useThreadsContext } from '../hooks/useThreadsContext'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const ThreadDetails = ({thread}) =>
 {
@@ -21,8 +22,8 @@ const ThreadDetails = ({thread}) =>
             <h4>{thread.title}</h4>
             <p><strong>line: </strong>{thread.line}</p>
             <p><strong>code: </strong>{thread.code}</p>
-            <p>{thread.createdAt}</p>
-            <span onClick={handleClick}>delete</span>
+            <p>{formatDistanceToNow(new Date(thread.createdAt), {addSuffix: true})}</p>
+            <span onClick={handleClick} class="material-symbols-outlined">delete</span>
         </div>
     )
 }

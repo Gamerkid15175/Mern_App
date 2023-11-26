@@ -32,6 +32,26 @@ const createThread = async (req, res) =>
 {
     const {title, line, code} = req.body
 
+    let emptyField = []
+
+    if(!title)
+    {
+        emptyField.push('title')
+    }
+    if(!line)
+    {
+        emptyField.push('line')
+    }
+    if(!code)
+    {
+        emptyField.push('code')
+    }
+
+    if(emptyField.length > 0)
+    {
+        return res.status(400).json({error: 'Please fill in all fields', emptyField})
+    }
+    
     //add to database
     try 
         {
