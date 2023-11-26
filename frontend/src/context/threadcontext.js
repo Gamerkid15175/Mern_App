@@ -12,6 +12,9 @@ export const threadsReducer = (state, action) =>
         case 'CREATE_THREAD': 
         return {threads: [action.payload, ...state.threads]}
 
+        case 'DELETE_THREAD':
+        return {threads: state.threads.filter( (t) => t._id !== action.payload._id )} 
+
         default:
              return state
      }
